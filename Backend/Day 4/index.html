@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CORS Demo App</title>
+</head>
+<body>
+    <h2>Browser CORS Testing</h2>
+    
+    <button onclick="makeRequest('GET')">Test GET Request</button>
+    <button onclick="makeRequest('POST')">Test POST Request</button>
+    
+    <pre id="output" style="background: #eee; padding: 10px; margin-top: 15px;"></pre>
+
+    <script>
+        async function makeRequest(methodType) {
+            const output = document.getElementById("output");
+            output.innerText = `Sending ${methodType} request...\nCheck the browser console (F12) for hidden CORS errors!`;
+            
+            try {
+                // 1. Set up the basic headers and method
+                const fetchOptions = {
+                    method: methodType,
+                    headers: { "Content-Type": "application/json" }
+                };
+    
+                // 2. Attach the JSON body ONLY for POST requests
+                if (methodType === 'POST') {
+                    const payload = { feature1: 3, feature2: 5 };
+                    fetchOptions.body = JSON.stringify(payload);
+                }
+                
+                // 3. Send the request to your actual POST endpoint (adjust /predict if needed)
+                const endpoint = methodType === 'POST' ? "http://127.0.0.1:8000/predictions" : "http://127.0.0.1:8000/predictions";
+                const response = await fetch(endpoint, fetchOptions);
+                
+                const data = await response.json();
+                output.innerText = `Success!\nStatus: ${response.status}\nData: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                output.innerText = `Failed! The browser blocked the request.\nError: ${error.message}\nOpen DevTools (F12) -> Console to see the exact CORS error.`;
+            }
+        }
+    </script>
+</body>
+</html>
