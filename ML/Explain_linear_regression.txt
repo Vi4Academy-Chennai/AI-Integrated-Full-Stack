@@ -1,0 +1,134 @@
+Step 1: Predict the price
+----------------------------
+Price =
+Intercept
++ (Coefficient1 × Sqft)
++ (Coefficient2 × Rooms)
++ (Coefficient3 × HouseType_Apartment)
++ (Coefficient4 × HouseType_Villa)
+
+Step 2: Assume Linear Regression Found These Coefficients
+---------------------------------------------------------
+- The algorithm keeps adjusting the coefficient and intercept until the total error becomes as small as possible.
+- The algorithm continues adjusting until it reaches the smallest possible total error across all rows.
+
+Intercept = 20000 [ Base value ]
+Sqft coefficient = 120
+Rooms coefficient = 15000
+Apartment coefficient = 10000
+Villa coefficient = 20000
+
+Then the equation becomes:
+-----------------------------
+
+Price=b+(c1​×Sqft)+(c2​×Rooms)+(c3​×Apartment)+(c4​×Villa)
+
+Price =
+20000
++ (120 × Sqft)
++ (15000 × Rooms)
++ (10000 × Apartment)
++ (20000 × Villa)
+
+example 
+--------
+Sqft = 1500
+Rooms = 3
+Apartment = 0
+Villa = 1
+
+formula :
+---------
+Price =
+20000
++ (120 × 1500)
++ (15000 × 3)
++ (10000 × 0)
++ (20000 × 1)
+
+calculation:
+------------
+= 20000
++ 180000
++ 45000
++ 0
++ 20000
+
+= 265000
+
+
+Predicted Price = 265000
+
+Actual Price = 250000
+
+Error = 15000
+
+------------------------------------------------------
+The algorithm continues adjusting until it reaches the smallest possible total error across all rows.
+
+Intercept = 0
+Sqft = 0
+Rooms = 0
+Apartment = 0
+Villa = 0
+
+so, price = 0 for every house. Obviously wrong.
+
+
+First row :
+-----------
+1500 sqft
+3 rooms
+Villa
+Actual Price = 250000
+
+Prediction is  0 (see above)
+
+Error [ actual - prediction ] = 250000 - 0 => 250000 - Huge error.
+
+
+
+After Some Iterations
+------------------------
+Intercept = 10000
+Sqft = 100
+Rooms = 10000
+Villa = 10000
+Apartment = 5000
+
+for row 1:
+-------------
+
+10000
++(100 × 1500)
++(10000 ×3)
++(10000 ×1)
+
+prediction = 200000
+actual = 250000
+Error  = 50000
+
+Still too high.
+
+
+More Adjustments
+--------------------
+
+The algorithm increases values further.
+
+Intercept = 20000
+Sqft = 120
+Rooms = 15000
+Villa = 20000
+Apartment = 10000
+
+Now Row 1 becomes:
+-------------------
+20000 + 180000 + 45000 + 20000 = 265000
+
+Error = 15000
+
+much smaller.
+
+
+

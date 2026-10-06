@@ -1,0 +1,157 @@
+MAE, MSE, and R² Score in Linear Regression
+--------------------------------------------------
+
+- When a Linear Regression model predicts values, we need a way to measure how good or bad the predictions are.
+- That's where MAE, MSE, and R² Score come in.
+- Think of them as a report card for your model.
+
+MAE = "How wrong am I on average?"
+MSE = "Did I make any very big mistakes?"
+
+1. MAE (Mean Absolute Error)
+------------------------------
+
+MAE tells us:
+
+"On average, how many marks is the model wrong by?"
+
+2. MSE (Mean Squared Error)
+--------------------------------
+
+MSE tells us:
+
+"How large are the errors, giving extra punishment to bigger mistakes?"
+" MSE helps us identify and heavily punish large mistakes."
+
+Why do we need MSE? (Simple Explanation)
+-----------------------------------------
+
+
+3. R² Score (R-Squared)
+-----------------------
+
+R² measures:
+
+"How much of the variation in data is explained by the model?"
+
+Instead of measuring error directly, it measures goodness of fit.
+
+R² Score   	 Meaning
+1.0		Perfect prediction
+0.9		Very good
+0.8		Good
+0.5		Moderate
+0.0		No predictive power
+Less than 0	Worse than predicting the average
+
+
+Why Do We Need All Three?
+--------------------------
+
+Each metric tells a different story.
+
+Metric		What It Answers
+MAE		How wrong are predictions on average?
+MSE		Are there any large mistakes?
+R²		How well does the model fit the data?
+
+Think of hiring a cricket player:
+
+MAE = Average runs missed.
+MSE = Punishes huge failures.
+R² = Overall performance rating.
+
+​Let's assume a trained model produced these predictions:
+----------------------------------------------------
+
+Actual Price	Predicted Price
+250000		240000
+320000		310000
+210000		220000
+180000		190000
+400000		380000
+290000		300000
+
+Step 1: Calculate Errors
+--------------------------
+Actual		Predicted	Error
+250000		240000		10000
+320000		310000		10000
+210000		220000		-10000
+180000		190000		-10000
+400000		380000		20000
+290000		300000		-10000
+
+
+MAE (Mean Absolute Error)
+------------------------
+Absolute errors:
+
+10000
+10000
+10000
+10000
+20000
+10000
+
+Sum: = 70000
+
+MAE:
+-----
+70000 / 6 = 11,666.67 -> On average, the model's prediction is off by about ₹11,667.
+
+MSE (Mean Squared Error)
+-------------------------
+
+10000² = 100,000,000
+10000² = 100,000,000
+10000² = 100,000,000
+10000² = 100,000,000
+20000² = 400,000,000
+10000² = 100,000,000
+
+sum = 900,000,000
+
+MSE: 900,000,000 / 6 = 150,000,000
+
+R² Score
+--------
+
+Mean of Actual Prices
+------------------------
+(250000+320000+210000+180000+400000+290000)/6 = 275000
+
+Total Sum of Squares (SST)
+-------------------------
+(250000-275000)² = 625,000,000
+(320000-275000)² = 2,025,000,000
+(210000-275000)² = 4,225,000,000
+(180000-275000)² = 9,025,000,000
+(400000-275000)² = 15,625,000,000
+(290000-275000)² = 225,000,000
+``
+SST = 31,750,000,000
+
+Sum of Squared Errors (SSE)
+-----------------------
+900,000,000
+
+R2
+------
+R² = 1 - (900,000,000 / 31,750,000,000)
+
+= 1 - 0.0283
+
+= 0.9717
+
+
+MAE = 11,666.67
+MSE = 150,000,000
+R² = 0.972
+
+Simple Interpretation
+-----------------------
+
+MAE = 11,667 → Average prediction error is about ₹11.7K.
+MSE = 150,000,000 → Penalizes large mistakes more heavily.
+R² = 97.2% → The model fits the data very well.
